@@ -1,8 +1,8 @@
 <template>
-    <button class="g-button" :class="{[`icon-${iconPosition}`]: true}"
+    <button class="y-button" :class="{[`icon-${iconPosition}`]: true}"
             @click="$emit('click')">
-        <g-icon class="icon" v-if="icon && !loading" :name="icon"/>
-        <g-icon class="loading icon" v-if="loading" name="loading"></g-icon>
+        <y-icon class="icon" v-if="icon && !loading" :name="icon"/>
+        <y-icon class="loading icon" v-if="loading" name="loading"></y-icon>
         <div class="content">
             <slot/>
         </div>
@@ -36,7 +36,7 @@
         }
     }
 
-    .g-button {
+    .y-button {
         font-size: var(--font-size);
         height: var(--button-height);
         padding: 0 1em;

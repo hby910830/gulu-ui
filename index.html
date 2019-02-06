@@ -35,24 +35,24 @@
 </head>
 <body>
 <div id="app">
-    <g-button :loading="loading1" @click="loading1 = !loading1">
+    <y-button :loading="loading1" @click="loading1 = !loading1">
         按钮
-    </g-button>
-    <g-button icon="settings" :loading="loading2"
+    </y-button>
+    <y-button icon="settings" :loading="loading2"
               @click="loading2 = !loading2">
         按钮
-    </g-button>
-    <g-button icon="settings" icon-position="right" :loading="loading3"
+    </y-button>
+    <y-button icon="settings" icon-position="right" :loading="loading3"
               @click="loading3 = !loading3">
         按钮
-    </g-button>
-    <g-button-group>
+    </y-button>
+    <y-button-group>
         <div>
-            <g-button icon="left">上一页</g-button>
+            <y-button icon="left">上一页</y-button>
         </div>
-        <g-button>更多</g-button>
-        <g-button icon="right" icon-position="right">下一页</g-button>
-    </g-button-group>
+        <y-button>更多</y-button>
+        <y-button icon="right" icon-position="right">下一页</y-button>
+    </y-button-group>
 
 </div>
 <script src="./app.js"></script>
