@@ -19,6 +19,9 @@ new Vue({
 
 //单元测试
 import chai from 'chai'
+import spy from 'chai-spies'
+
+chai.use(spy)
 
 const expect = chai.expect
 
@@ -66,6 +69,23 @@ const expect = chai.expect
   let svg = vm.$el.querySelector('svg')
   let {order} =window.getComputedStyle(svg)
   expect(order).to.eq('2')
+  vm.$el.remove()
+  vm.$destroy()
+}
+{
+  //mock
+  const Constructor = Vue.extend(Button)
+  const vm = new Constructor({
+    propsData: {
+      icon: 'settings'
+    }
+  })
+  vm.$mount()
+  let spy = chai.spy(function(){})
+  vm.$on('click', spy)
+  //希望这个函数被执行
+  vm.$el.click()
+  expect(spy).to.have.been.called()
   vm.$el.remove()
   vm.$destroy()
 }
