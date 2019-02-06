@@ -1,59 +1,56 @@
 <!doctype html>
 <html lang="zh-Hans">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>gulu-ui</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>gulu-ui</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        html {
-            --button-height: 32px;
-            --font-size: 14px;
-            --button-bg: white;
-            --button-active-bg: #eee;
-            --border-radius: 4px;
-            --color: #333;
-            --border-color: #999;
-            --border-color-hover: red;
-        }
+    html {
+      --button-height: 32px;
+      --font-size: 14px;
+      --button-bg: white;
+      --button-active-bg: #eee;
+      --border-radius: 4px;
+      --color: #333;
+      --border-color: #999;
+      --border-color-hover: red;
+    }
 
-        #app {
-            margin: 20px;
-        }
+    #app {
+      margin: 20px;
+    }
 
-        body {
-            font-size: var(--font-size);
-        }
-    </style>
+    body {
+      font-size: var(--font-size);
+    }
+  </style>
 </head>
 <body>
 <div id="app">
-    <y-button :loading="loading1" @click="loading1 = !loading1">
-        按钮
-    </y-button>
-    <y-button icon="settings" :loading="loading2"
-              @click="loading2 = !loading2">
-        按钮
-    </y-button>
-    <y-button icon="settings" icon-position="right" :loading="loading3"
-              @click="loading3 = !loading3">
-        按钮
-    </y-button>
-    <y-button-group>
-        <div>
-            <y-button icon="left">上一页</y-button>
-        </div>
-        <y-button>更多</y-button>
-        <y-button icon="right" icon-position="right">下一页</y-button>
-    </y-button-group>
-
+  <y-button :loading="loading1" @click="loading1 = !loading1">
+    按钮
+  </y-button>
+  <y-button icon="settings" :loading="loading2"
+            @click="loading2 = !loading2">
+    按钮
+  </y-button>
+  <y-button icon="settings" icon-position="right" :loading="loading3"
+            @click="loading3 = !loading3">
+    按钮
+  </y-button>
+  <y-button-group>
+    <y-button icon="left">上一页</y-button>
+    <y-button>更多</y-button>
+    <y-button icon="right" icon-position="right">下一页</y-button>
+  </y-button-group>
 </div>
 <script src="./app.js"></script>
 <script src="//at.alicdn.com/t/font_757846_pzaxq4zuv3a.js"></script>
