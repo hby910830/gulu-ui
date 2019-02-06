@@ -67,7 +67,7 @@ const expect = chai.expect
   })
   vm.$mount(div)
   let svg = vm.$el.querySelector('svg')
-  let {order} =window.getComputedStyle(svg)
+  let {order} = window.getComputedStyle(svg)
   expect(order).to.eq('2')
   vm.$el.remove()
   vm.$destroy()
@@ -81,7 +81,8 @@ const expect = chai.expect
     }
   })
   vm.$mount()
-  let spy = chai.spy(function(){})
+  let spy = chai.spy(function () {
+  })
   vm.$on('click', spy)
   //希望这个函数被执行
   vm.$el.click()
