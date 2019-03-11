@@ -35,22 +35,43 @@
 </head>
 <body>
 <div id="app">
-  <y-button :loading="loading1" @click="loading1 = !loading1">
-    按钮
-  </y-button>
-  <y-button icon="settings" :loading="loading2"
-            @click="loading2 = !loading2">
-    按钮
-  </y-button>
-  <y-button icon="settings" icon-position="right" :loading="loading3"
-            @click="loading3 = !loading3">
-    按钮
-  </y-button>
-  <y-button-group>
-    <y-button icon="left">上一页</y-button>
-    <y-button>更多</y-button>
-    <y-button icon="right" icon-position="right">下一页</y-button>
-  </y-button-group>
+
+  <y-row>
+    <y-col span="12">12</y-col>
+    <y-col span="12">12</y-col>
+  </y-row>
+  <y-row>
+    <y-col span="4">4</y-col>
+    <y-col span="6">6</y-col>
+    <y-col span="14">12</y-col>
+  </y-row>
+  <y-row>
+    <y-col span="2">2</y-col>
+    <y-col span="2">2</y-col>
+    <y-col span="4">4</y-col>
+    <y-col span="16">14</y-col>
+  </y-row>
+  <y-row>
+    <y-col span="2">2</y-col>
+    <y-col span="22">22</y-col>
+  </y-row>
+
+  <!--<y-button :loading="loading1" @click="loading1 = !loading1">-->
+    <!--按钮-->
+  <!--</y-button>-->
+  <!--<y-button icon="settings" :loading="loading2"-->
+            <!--@click="loading2 = !loading2">-->
+    <!--按钮-->
+  <!--</y-button>-->
+  <!--<y-button icon="settings" icon-position="right" :loading="loading3"-->
+            <!--@click="loading3 = !loading3">-->
+    <!--按钮-->
+  <!--</y-button>-->
+  <!--<y-button-group>-->
+    <!--<y-button icon="left">上一页</y-button>-->
+    <!--<y-button>更多</y-button>-->
+    <!--<y-button icon="right" icon-position="right">下一页</y-button>-->
+  <!--</y-button-group>-->
 </div>
 <script src="./src/app.js"></script>
 <script src="//at.alicdn.com/t/font_757846_pzaxq4zuv3a.js"></script>

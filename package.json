@@ -4,7 +4,7 @@
   "description": "这是一个基于Vue的UI组件",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npx parcel index.html --no-cache",
+    "start": "parcel index.html --no-cache",
     "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/* --no-cache --no-minify && karma start --single-run"
   },
@@ -40,9 +40,10 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.9.2",
     "parcel-bundler": "^1.11.0",
+    "sass": "^1.17.2",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.6.8"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
