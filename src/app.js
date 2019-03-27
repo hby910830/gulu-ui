@@ -24,14 +24,16 @@ new Vue({
   },
   methods: {
     showToast() {
-      this.$toast('很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字', {
+      this.$toast('你的智商需要充值', {
         closeButton: {
-          text: '关闭',
+          text: '已充值',
           callback() {
             console.log('我知道到了')
           },
           enableHtml: false
-        }
+        },
+        autoClose: false,
+        position: 'middle'
       })
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" ref="toast">
+  <div class="toast" ref="toast" :class="toastClasses">
     <slot v-if="!enableHtml"></slot>
     <div v-else v-html="$slots.default"></div>
     <template v-if="closeButton">
@@ -13,15 +13,15 @@
   export default {
     name: "GuluToast",
     props: {
-      autoClose:{
+      autoClose: {
         type: Boolean,
         default: true
       },
-      autoCloseDelay:{
+      autoCloseDelay: {
         type: Number,
         default: 10
       },
-      closeButton:{
+      closeButton: {
         type: Object,
         default: () => {
           return {
@@ -30,33 +30,47 @@
           }
         }
       },
-      enableHtml:{
+      enableHtml: {
         type: Boolean,
         default: false
+      },
+      position: {
+        type: String,
+        default: 'top',
+        validator(value) {
+          return ['top', 'bottom', 'middle'].indexOf(value) > -1
+        }
       }
     },
-    mounted(){
+    computed: {
+      toastClasses() {
+        return {
+          [`position-${this.position}`]: true
+        }
+      }
+    },
+    mounted() {
       this.updateStyle()
       this.exeAutoClose()
     },
-    methods:{
-      updateStyle(){
+    methods: {
+      updateStyle() {
         this.$nextTick(() => {
           this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
         })
       },
-      exeAutoClose(){
-        if(this.autoClose){
+      exeAutoClose() {
+        if (this.autoClose) {
           setTimeout(() => {
             this.close()
           }, this.autoCloseDelay * 1000)
         }
       },
-      close(){
+      close() {
         this.$el.remove()
         this.$destroy()
       },
-      onClickClose(){
+      onClickClose() {
         this.close()
         //防御性编程
         this.closeButton &&
@@ -75,22 +89,32 @@
     align-items: center;
     position: fixed;
     left: 50%;
-    top: 0;
-    transform: translateX(-50%);
     font-size: 14px;
     line-height: 1.8;
     min-height: 40px;
     border-radius: 4px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
     background-color: rgba(0, 0, 0, .75);
-    .close{
+    .close {
       padding-left: 16px;
       flex-shrink: 0;
     }
-    .line{
+    .line {
       height: 100%;
       border-left: 1px solid #666;
       margin-left: 16px;
+    }
+    &.position-top {
+      top: 0;
+      transform: translateX(-50%);
+    }
+    &.position-bottom {
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+    &.position-middle {
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 </style>
