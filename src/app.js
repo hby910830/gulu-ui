@@ -4,12 +4,14 @@ import Icon from './icon'
 import Col from './col'
 import Row from './row'
 import ButtonGroup from './button-group'
+import MyPlugin from './plugin'
 
 Vue.component('y-button', Button)
 Vue.component('y-col', Col)
 Vue.component('y-row', Row)
 Vue.component('y-icon', Icon)
 Vue.component('y-button-group', ButtonGroup)
+Vue.use(MyPlugin)
 
 new Vue({
   el: '#app',
@@ -17,6 +19,13 @@ new Vue({
     loading1: false,
     loading2: true,
     loading3: false,
+  },
+  created() {
+  },
+  methods: {
+    showToast(){
+      this.$toast('this is toast')
+    }
   }
 })
 
