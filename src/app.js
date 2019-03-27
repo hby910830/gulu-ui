@@ -23,8 +23,16 @@ new Vue({
   created() {
   },
   methods: {
-    showToast(){
-      this.$toast('this is toast')
+    showToast() {
+      this.$toast('很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字', {
+        closeButton: {
+          text: '关闭',
+          callback() {
+            console.log('我知道到了')
+          },
+          enableHtml: false
+        }
+      })
     }
   }
 })
