@@ -5,6 +5,11 @@ import Col from './col'
 import Row from './row'
 import ButtonGroup from './button-group'
 import MyPlugin from './plugin'
+import Tabs from './tabs'
+import TabsHead from './tabs-head'
+import TabsItem from './tabs-item'
+import TabsBody from './tabs-body'
+import TabsPanel from './tabs-panel'
 
 Vue.component('y-button', Button)
 Vue.component('y-col', Col)
@@ -12,30 +17,20 @@ Vue.component('y-row', Row)
 Vue.component('y-icon', Icon)
 Vue.component('y-button-group', ButtonGroup)
 Vue.use(MyPlugin)
+Vue.component('y-tabs', Tabs)
+Vue.component('y-tabs-head', TabsHead)
+Vue.component('y-tabs-item', TabsItem)
+Vue.component('y-tabs-body', TabsBody)
+Vue.component('y-tabs-panel', TabsPanel)
 
 new Vue({
   el: '#app',
   data: {
-    loading1: false,
-    loading2: true,
-    loading3: false,
+    selectedTab: 'belle'
   },
   created() {
   },
   methods: {
-    showToast() {
-      this.$toast(`你的智商余额为${parseInt(Math.random() * 100)},你的智商需要充值`, {
-        closeButton: {
-          text: '已充值',
-          callback() {
-            console.log('我知道到了')
-          },
-          enableHtml: false
-        },
-        autoClose: false,
-        position: 'middle'
-      })
-    }
   }
 })
 
