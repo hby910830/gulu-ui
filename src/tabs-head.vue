@@ -30,7 +30,7 @@
 
 <style lang="scss" scoped>
   .tabs-head {
-    border: 1px solid red;
+    border-bottom: 1px solid #ddd;
     display: flex;
     justify-content: flex-start;
     height: 40px;
@@ -43,6 +43,10 @@
     }
     > .actions-wrapper {
       margin-left: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1em;
     }
   }
 </style>

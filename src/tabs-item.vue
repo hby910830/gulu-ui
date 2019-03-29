@@ -52,7 +52,6 @@
     align-items: center;
     height: 100%;
     &.active{
-      background-color: red;
       color: blue;
     }
   }
