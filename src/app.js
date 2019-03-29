@@ -26,7 +26,7 @@ Vue.component('y-tabs-panel', TabsPanel)
 new Vue({
   el: '#app',
   data: {
-    selectedTab: 'belle'
+    selectedTab: 'nabobess'
   },
   created() {
 
