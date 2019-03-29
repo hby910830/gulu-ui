@@ -1,6 +1,7 @@
 <template>
   <div class="tabs-head">
     <slot></slot>
+    <div class="line"></div>
     <div class="actions-wrapper">
       <slot name="actions"></slot>
     </div>
@@ -11,7 +12,10 @@
   export default {
     name: "GuluTabsHead",
     inject: ['eventBus'],
-    created(){
+    created() {
+      this.eventBus.$on('update:selected', (item, vm) => {
+        console.log(vm.$el);
+      })
     }
   }
 </script>
@@ -21,9 +25,15 @@
     border: 1px solid red;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     height: 40px;
-    >.actions-wrapper{
+    position: relative;
+    > .line {
+      position: absolute;
+      bottom: 0;
+      border-bottom: 1px solid blue;
+      width: 100px;
+    }
+    > .actions-wrapper {
       margin-left: auto;
     }
   }

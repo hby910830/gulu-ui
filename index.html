@@ -35,7 +35,7 @@
 </head>
 <body>
 <div id="app">
-  <y-tabs :selected.sync="selectedTab">
+  <y-tabs :selected.sync="selectedTab" @update:selected="yyy">
     <y-tabs-head>
       <template slot="actions">
         <button>设置</button>
