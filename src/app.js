@@ -29,8 +29,11 @@ new Vue({
     selectedTab: 'belle'
   },
   created() {
+
   },
   methods: {
+    yyy(data){
+    }
   }
 })
 

@@ -5,22 +5,34 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+
   export default {
     name: "GuluTabs",
-    props:{
+    props: {
       selected: {
         type: String,
         required: true
       },
-      direction:{
+      direction: {
         type: String,
-        validator(value){
+        validator(value) {
           return ['horizontal', 'vertical'].indexOf(value) >= 0
         }
       }
     },
-    created(){
-      // this.$emit('update:selected', 'xxxx')
+    data() {
+      return {
+        eventBus: new Vue()
+      }
+    },
+    provide() {
+      return {
+        eventBus: this.eventBus
+      }
+    },
+    mounted() {
+      this.eventBus.$emit('update:selected', this.selected)
     }
   }
 </script>
