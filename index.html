@@ -30,19 +30,22 @@
   </style>
 </head>
 <body>
-<div id="app" style="padding: 100px">
-  <y-popover>
-    <template slot="content">
-      <div>content 1111</div>
-    </template>
-    <button>click me</button>
-  </y-popover>
-  <y-popover>
-    <template slot="content">
-      <div>content 222</div>
-    </template>
-    <button>click me</button>
-  </y-popover>
+<div id="app" style="padding: 100px;border:1px solid red">
+  <div style="height: 1000px"></div>
+  <div style="overflow: hidden;border: 1px solid green;">
+    <y-popover>
+      <template slot="content">
+        <div>popover 内容1</div>
+      </template>
+      <button>click me</button>
+    </y-popover>
+    <y-popover>
+      <template slot="content">
+        <div>popover 内容2</div>
+      </template>
+      <button>click me</button>
+    </y-popover>
+  </div>
 </div>
 <script src="./src/app.js"></script>
 <!--<script src="//at.alicdn.com/t/font_757846_pzaxq4zuv3a.js"></script>-->
