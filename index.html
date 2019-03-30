@@ -24,35 +24,25 @@
       --border-color-hover: red;
     }
 
-
     body {
       font-size: var(--font-size);
     }
   </style>
 </head>
 <body>
-<div id="app">
-  <y-tabs :selected.sync="selectedTab" @update:selected="yyy">
-    <y-tabs-head>
-      <template slot="actions">
-        <button>设置</button>
-      </template>
-      <y-tabs-item name="belle">
-        美女
-      </y-tabs-item>
-      <y-tabs-item name="handsomeBoy" disabled>
-        俊男
-      </y-tabs-item>
-      <y-tabs-item name="nabobess">
-        富婆
-      </y-tabs-item>
-    </y-tabs-head>
-    <y-tabs-body>
-      <y-tabs-panel name="belle">美女相关咨询</y-tabs-panel>
-      <y-tabs-panel name="handsomeBoy">俊男相关咨询</y-tabs-panel>
-      <y-tabs-panel name="nabobess">富婆相关咨询</y-tabs-panel>
-    </y-tabs-body>
-  </y-tabs>
+<div id="app" style="padding: 100px">
+  <y-popover>
+    <template slot="content">
+      <div>content 1111</div>
+    </template>
+    <button>click me</button>
+  </y-popover>
+  <y-popover>
+    <template slot="content">
+      <div>content 222</div>
+    </template>
+    <button>click me</button>
+  </y-popover>
 </div>
 <script src="./src/app.js"></script>
 <!--<script src="//at.alicdn.com/t/font_757846_pzaxq4zuv3a.js"></script>-->
