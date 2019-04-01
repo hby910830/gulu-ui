@@ -32,7 +32,7 @@ Vue.component('y-collapse-item', CollapseItem)
 new Vue({
   el: '#app',
   data: {
-    selectedTab: 'nabobess'
+    selectedTab: '2'
   },
   created() {
 
