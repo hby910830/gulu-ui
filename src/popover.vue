@@ -1,9 +1,9 @@
 <template>
   <div class="popover">
-    <div ref="contentWrapper" class="content-wrapper" v-if="visible" @click.stop>
+    <div ref="contentWrapper" class="content-wrapper" v-if="visible" @click.stop="yyy">
       <slot name="content"></slot>
     </div>
-    <div ref="triggerWrapper" @click="xxx">
+    <div ref="triggerWrapper" @click="onClick">
       <slot></slot>
     </div>
   </div>
@@ -17,24 +17,35 @@
         visible: false
       }
     },
-    mounted(){
+    mounted() {
     },
     methods: {
-      xxx() {
+      yyy() {
+        console.log(1);
+      },
+      positionContent() {
+        document.body.appendChild(this.$refs.contentWrapper)
+        let {left, top} = this.$refs.triggerWrapper.getBoundingClientRect()
+        this.$refs.contentWrapper.style.left = `${left + window.scrollX}px`
+        this.$refs.contentWrapper.style.top = `${top + window.scrollY}px`
+      },
+      listenToDocument() {
+        let eventHandler = () => {
+          this.visible = false
+          document.removeEventListener('click', eventHandler)
+        }
+        document.addEventListener('click', eventHandler)
+      },
+      onShow() {
+        setTimeout(() => {
+          this.positionContent()
+          this.listenToDocument()
+        }, 300)
+      },
+      onClick() {
         this.visible = !this.visible
         if (this.visible) {
-          setTimeout(() => {
-            document.body.appendChild(this.$refs.contentWrapper)
-            let {width,left,top} = this.$refs.triggerWrapper.getBoundingClientRect()
-            console.log(width, left, top);
-            this.$refs.contentWrapper.style.left = `${left + window.scrollX}px`
-            this.$refs.contentWrapper.style.top = `${top + window.scrollY}px`
-            let eventHandler = () => {
-              this.visible = false
-              document.removeEventListener('click', eventHandler)
-            }
-            document.addEventListener('click', eventHandler)
-          }, 300)
+          this.onShow()
         }
       }
     }
@@ -47,6 +58,7 @@
     vertical-align: top;
     position: relative;
   }
+
   .content-wrapper {
     position: absolute;
     border: 1px solid red;
