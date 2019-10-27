@@ -1,6 +1,8 @@
 <template>
   <div class="collapse-item">
-    <div class="title" @click="toggle">{{title}}</div>
+    <div class="title" @click="toggle">
+      {{single}}{{title}}
+    </div>
     <div class="content" v-if="open">
       <slot></slot>
     </div>
@@ -8,49 +10,52 @@
 </template>
 
 <script>
-  export default {
-    name: "GuluCollapseItem",
-    props: {
-      title: {
-        type: String,
-        required: true
-      },
-      name: {
-        type: String,
-        required: true
-      }
-    },
-    inject: ['eventBus'],
-    data() {
-      return {
-        open: false
-      }
-    },
-    methods: {
-      toggle() {
-        if (this.open) {
-          this.open = false
-        } else {
-          this.eventBus && this.eventBus.$emit('update:selected', this.name)
-        }
-      },
-      close() {
-        this.open = false
-      },
-      show(){
-        this.open = true
-      }
-    },
-    mounted() {
-      this.eventBus && this.eventBus.$on('update:selected', name => {
-        if (name !== this.name) {
-          this.close()
-        }else{
-          this.show()
-        }
-      })
-    }
+ export default {
+  name: "GuluCollapseItem",
+  props: {
+   title: {
+	type: String,
+	required: true
+   },
+   name: {
+	type: String,
+	required: true
+   }
+  },
+  inject: ['eventBus'],
+  data() {
+   return {
+	open: false,
+	single: false
+   }
+  },
+  methods: {
+   toggle() {
+	if (this.open) {
+	 this.open = false
+	} else {
+	 this.eventBus && this.eventBus.$emit('update:selected', this.name)
+	}
+   },
+   close() {
+	this.open = false
+   },
+   show() {
+	this.open = true
+   }
+  },
+  mounted() {
+   this.eventBus && this.eventBus.$on('update:selected', name => {
+	if (name !== this.name) {
+	 if (this.single) {
+	  this.close()
+	 }
+	} else {
+	 this.show()
+	}
+   })
   }
+ }
 </script>
 
 <style lang="scss" scoped>
