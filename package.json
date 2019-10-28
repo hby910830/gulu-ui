@@ -24,8 +24,9 @@
   },
   "homepage": "https://github.com/hby910830/gulu-ui#readme",
   "dependencies": {
-    "vue": "^2.5.16",
-    "vue-hot-reload-api": "^2.3.0"
+    "vue": "2.6.8",
+    "vue-hot-reload-api": "^2.3.0",
+    "vue-server-renderer": "2.6.8"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.1.0",
