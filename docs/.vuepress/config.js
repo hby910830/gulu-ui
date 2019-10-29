@@ -7,7 +7,8 @@ module.exports = {
 		],
 		sidebar: [
 			'/install/',
-			'/get-started/'
+			'/get-started/',
+			'/components/'
 		]
 	}
 }
