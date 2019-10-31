@@ -21,7 +21,7 @@
                 <y-button disabled>默认按钮</y-button>
                 <y-button icon="settings">默认按钮</y-button>
                 <y-button :loading="true">默认按钮</y-button>
-				`.replace(/\t| +/g, ' ')
+				`.replace(/\t| +/g, '').trim()
 			}
 		}
 	}
