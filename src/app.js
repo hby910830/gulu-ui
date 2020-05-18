@@ -34,15 +34,11 @@ Vue.component('y-pager', Pager)
 new Vue({
   el: '#app',
   data: {
-    selectedTab: ['2','1'],
-    single: false
   },
   created() {
 
   },
   methods: {
-    yyy(data){
-    }
   }
 })
 
