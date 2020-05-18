@@ -22,16 +22,21 @@
 			}
 		},
 		data() {
-			let pages = [1, this.totalPage, this.currentPage, this.currentPage - 1, this.currentPage - 2, this.currentPage + 1, this.currentPage + 2]
-			const u = unique(pages.sort((a, b) => a - b))
-			// 页码插入...
-			let u2 = u.reduce((pre, current, index, array) => {
+			let pages = unique([
+				1,
+				this.totalPage,
+				this.currentPage,
+				this.currentPage - 1,
+				this.currentPage - 2,
+				this.currentPage + 1,
+				this.currentPage + 2]
+				.sort((a, b) => a - b)).reduce((pre, current, index, array) => {		// sort页码排序
 				pre.push(current)
-				array[index + 1] && array[index + 1] - array[index] > 1 && pre.push('...')
+				array[index + 1] && array[index + 1] - array[index] > 1 && pre.push('...')	// 页码插入...
 				return pre
 			}, [])
 			return {
-				pages: u2
+				pages
 			}
 		}
 	}
