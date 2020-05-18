@@ -1,13 +1,27 @@
 <template>
-  
+ <div class="pager">pager</div>
 </template>
 
 <script>
 	export default {
-		name: "GuluPager"
+		name: 'GuluPager',
+		props:{
+			totalPage: {
+				type: Number,
+				required: true
+			},
+			currentPage: {
+				type: Number,
+				required: true
+			},
+			hideIfOnePage: {
+				type: Boolean,
+				default: true
+			}
+		}
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
