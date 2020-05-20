@@ -1,6 +1,10 @@
 <template>
- <div class="pager">
-	<span style="margin: 6px" v-for="item in pages">{{item}}</span>
+ <div class="gulu-pager" style="margin: 20px">
+	<span class="gulu-pager-item" v-for="page in pages"
+				:class="{active: page === currentPage, separator: page === '...'}"
+	>
+	 {{page}}
+	</span>
  </div>
 </template>
 
@@ -48,10 +52,32 @@
 		array.map(number => {
 			object[number] = true
 		})
-		return Object.keys(object).filter(item => parseInt(item, 10))
+		return Object.keys(object).map(item => parseInt(item, 10))
 	}
 </script>
 
-<style scoped lang="scss">
+<style>
+ * {margin: 0;padding: 0;box-sizing: border-box;}
+ body {
+	background: #fff;
+ }
+</style>
 
+<style scoped lang="scss">
+ @import "var";
+ .gulu-pager {
+	&-item {
+	 border: 1px solid #e1e1e1;border-radius: $border-radius;padding: 0 4px;display: inline-flex;justify-content: center;
+	 align-items: center;font-size: 12px;height: 20px;min-width: 20px;margin: 0 4px;cursor: pointer;
+	 &.active, &:hover {
+		border-color: $blue;
+	 }
+	 &.separator {
+		border: none;
+	 }
+	 &.active {
+		cursor: default;
+	 }
+	}
+ }
 </style>
