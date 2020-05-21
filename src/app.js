@@ -34,6 +34,7 @@ Vue.component('y-pager', Pager)
 new Vue({
   el: '#app',
   data: {
+    currentPage: 1
   },
   created() {
 

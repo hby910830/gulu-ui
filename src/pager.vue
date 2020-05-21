@@ -1,6 +1,6 @@
 <template>
  <div class="gulu-pager" style="margin: 20px">
-	<span class="gulu-pager-nav pre" :class="{disabled: currentPage === 1}"><</span>
+	<span class="gulu-pager-nav pre" :class="{disabled: currentPage === 1}" @click="onClickPage(currentPage - 1)"><</span>
 	<template class="gulu-pager-item" v-for="page in pages">
 	 <template v-if="page === currentPage">
 		<span class="gulu-pager-item current">{{page}}</span>
@@ -9,10 +9,10 @@
 		<span class="gulu-pager-separator">...</span>
 	 </template>
 	 <template v-else>
-		<span class="gulu-pager-item other">{{page}}</span>
+		<span class="gulu-pager-item other" @click="onClickPage(page)">{{page}}</span>
 	 </template>
 	</template>
-	<span class="gulu-pager-nav next" :class="{disabled: currentPage === totalPage}">></span>
+	<span class="gulu-pager-nav next" :class="{disabled: currentPage === totalPage}" @click="onClickPage(currentPage + 1)">></span>
  </div>
 </template>
 
@@ -61,6 +61,13 @@
 			return {
 				pages
 			}
+		},
+		methods: {
+			onClickPage(n){
+				if(n >= 1 && n <= this.totalPage){
+					this.$emit('update:currentPage', n)
+				}
+			}
 		}
 	}
 
@@ -90,11 +97,7 @@
  .gulu-pager {
 	display: flex;
 	align-items: center;
-	&-separator {
-	 font-size: $font-size;
-	 width: $width;
-	 text-align: center;
-	}
+	&-separator {font-size: $font-size;width: $width;text-align: center;}
 	&-item {
 	 font-size: $font-size;height: $height;min-width: $width;border: 1px solid #e1e1e1;border-radius: $border-radius;
 	 padding: 0 4px;display: inline-flex;justify-content: center;align-items: center;margin: 0 4px;cursor: pointer;
@@ -104,9 +107,7 @@
 	&-nav {
 	 display: inline-flex;justify-content: center;align-items: center;background: $grey;
 	 width: $width;height: $height;border-radius: $border-radius;font-size: $font-size;margin: 0 4px;
-	 &.disabled{
-		background: darken($grey, 10%);
-	 }
+	 &.disabled {background: darken($grey, 10%)}
 	}
  }
 </style>
