@@ -1,5 +1,5 @@
 <template>
- <div class="gulu-pager" style="margin: 20px">
+ <div class="gulu-pager" :class="{hide: hideIfOnePage && totalPage <= 1}">
 	<span class="gulu-pager-nav pre" :class="{disabled: currentPage === 1}" @click="onClickPage(currentPage - 1)"><</span>
 	<template class="gulu-pager-item" v-for="page in pages">
 	 <template v-if="page === currentPage">
