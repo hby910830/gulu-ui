@@ -33,33 +33,24 @@
 				default: true
 			}
 		},
-		data() {
-			let pages = unique([
-				1,
-				this.totalPage,
-				this.currentPage,
-				this.currentPage - 1,
-				this.currentPage - 2,
-				this.currentPage - 3,
-				this.currentPage - 4,
-				this.currentPage - 5,
-				this.currentPage - 6,
-				this.currentPage - 7,
-				this.currentPage + 1,
-				this.currentPage + 2,
-				this.currentPage + 3,
-				this.currentPage + 4,
-				this.currentPage + 5,
-				this.currentPage + 6,
-				this.currentPage + 7]
-				.filter(n => n >= 1 && n <= this.totalPage)
-				.sort((a, b) => a - b)).reduce((pre, current, index, array) => {		// sort页码排序
-				pre.push(current)
-				array[index + 1] && array[index + 1] - array[index] > 1 && pre.push('...')	// 页码插入...
-				return pre
-			}, [])
-			return {
-				pages
+		computed:{
+			pages(){
+				return unique([
+					1,
+					this.totalPage,
+					this.currentPage,
+					this.currentPage - 1,
+					this.currentPage - 2,
+					this.currentPage - 3,
+					this.currentPage + 1,
+					this.currentPage + 2,
+					this.currentPage + 3]
+					.filter(n => n >= 1 && n <= this.totalPage)
+					.sort((a, b) => a - b)).reduce((pre, current, index, array) => {		// sort页码排序
+					pre.push(current)
+					array[index + 1] && array[index + 1] - array[index] > 1 && pre.push('...')	// 页码插入...
+					return pre
+				}, [])
 			}
 		},
 		methods: {
@@ -95,8 +86,8 @@
  $width: 20px;
  $font-size: 12px;
  .gulu-pager {
-	display: flex;
-	align-items: center;
+	&.hide{display: none}
+	display: flex;align-items: center;user-select: none;
 	&-separator {font-size: $font-size;width: $width;text-align: center;}
 	&-item {
 	 font-size: $font-size;height: $height;min-width: $width;border: 1px solid #e1e1e1;border-radius: $border-radius;
@@ -105,9 +96,9 @@
 	 &.current {cursor: default;}
 	}
 	&-nav {
-	 display: inline-flex;justify-content: center;align-items: center;background: $grey;
+	 display: inline-flex;justify-content: center;align-items: center;background: $grey;cursor: pointer;
 	 width: $width;height: $height;border-radius: $border-radius;font-size: $font-size;margin: 0 4px;
-	 &.disabled {background: darken($grey, 10%)}
+	 &.disabled {cursor:default;background: darken($grey, 15%)}
 	}
  }
 </style>
