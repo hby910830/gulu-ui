@@ -1,12 +1,12 @@
 <template>
-	<div class="cascaderItem">
-		{{sourceItem.name}}
-		<gulu-cascader-item
-			v-if="sourceItem.children"
-			v-for="item in sourceItem.children"
-			:sourceItem="item"
-		></gulu-cascader-item>
-	</div>
+<!--	<div class="cascaderItem">-->
+<!--		{{sourceItem.name}}-->
+<!--		<gulu-cascader-item-->
+<!--			v-if="sourceItem.children"-->
+<!--			v-for="item in sourceItem.children"-->
+<!--			:sourceItem="item"-->
+<!--		></gulu-cascader-item>-->
+<!--	</div>-->
 </template>
 
 <script>

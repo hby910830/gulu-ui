@@ -74,6 +74,25 @@ new Vue({
 					]
 				}
 			]
+		},{
+			name: '四川',
+			children:[
+				{
+					name: '成都',
+					children: [
+						{name: '郫县区'},
+						{name: '高新区'},
+						{name: '武侯区'},
+					],
+				},{
+					name: '汶川',
+					children: [
+						{name: '映秀镇'},
+						{name: '北川'},
+						{name: '阿坝州'},
+					],
+				},
+			]
 		}]
 	},
 	created() {
