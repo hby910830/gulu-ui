@@ -1,12 +1,13 @@
 <template>
-	<div class="cascaderItems">
+	<div class="cascaderItems" :style="{height}">
 		<div class="left">
 			<div class="label" v-for="item in items" @click="leftSelected = item">
 				{{item.name}}
+				<span v-if="item.children"> > </span>
 			</div>
 		</div>
 		<div class="right" v-if="rightItems">
-				<gulu-cascader-items :items="rightItems"></gulu-cascader-items>
+				<gulu-cascader-items :items="rightItems" :height="height"></gulu-cascader-items>
 		</div>
 	</div>
 </template>
@@ -17,6 +18,9 @@
 		props: {
 			items: {
 				type: Array
+			},
+			height:{
+				type: String
 			}
 		},
 		data(){
@@ -37,8 +41,23 @@
 </script>
 
 <style scoped lang="scss">
+	@import "var";
 	.cascaderItems {
-		border: 1px solid red;
-		margin: 10px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		height: 100px;
+		@extend .box-shadow;
+		.left{
+			height: 100%;
+			padding: .3em 0;
+		}
+		.right{
+			height: 100%;
+			border-left: 1px solid $border-color;
+		}
+		.label{
+			padding: .3em 1em;
+		}
 	}
 </style>
