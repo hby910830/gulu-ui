@@ -1,11 +1,21 @@
-#### 一个基于Vue UI组建库
+# hello
 
-作者：韩宝亿
-
-## 安装
-
-使用本框架前，请在 CSS 中开启 border-box
-
+## Project setup
 ```
-*{box-sizing: border-box;}
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
+
+### Compiles and minifies for production
+```
+yarn run build
+```
+
+### Run your unit tests
+```
+yarn run test:unit
 ```
