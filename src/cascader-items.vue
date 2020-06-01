@@ -1,7 +1,5 @@
 <template>
 	<div class="cascaderItems" :style="{height}">
-		<div>selected: {{selected && selected[level] && selected[level].name}}</div>
-		<div>level: {{level}}</div>
 		<div class="left">
 			<div class="label" v-for="item in items" @click="onClickSelected(item)">
 				{{item.name}}
@@ -51,6 +49,7 @@
 			onClickSelected(item){
 				const copy = JSON.parse(JSON.stringify(this.selected))
 				copy[this.level] = item
+				copy.splice(this.level + 1)	//每次改变就清空后面的选项
 				this.$emit('update:selected', copy)
 			},
 			onUpdateSelected(newSelected){

@@ -1,10 +1,8 @@
 <template>
 	<div>
-		<p>{{selected}}</p>
 		<y-cascader :source="source" popover-height="200px"
 								:selected.sync="selected"
 		></y-cascader>
-		<p>2222 </p>
 	</div>
 </template>
 
