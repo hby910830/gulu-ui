@@ -8,6 +8,11 @@
 
 <script>
 	import Cascader from './cascader'
+	import db from './db'
+
+	function ajax(parentId = 0) {
+		return db.filter(item => item.parent_id === parentId)
+	}
 
 	export default {
 		name: 'demo',
@@ -15,65 +20,7 @@
 		data() {
 			return {
 				selected: [],
-				source: [{
-					name: '浙江',
-					children: [
-						{
-							name: '杭州',
-							children: [
-								{name: '上城区'},
-								{name: '下城区'},
-								{name: '西湖区'},
-							]
-						}, {
-							name: '嘉兴',
-							children: [
-								{name: '南湖区'},
-								{name: '秀洲区'},
-								{name: '嘉善区'},
-							]
-						}
-					]
-				}, {
-					name: '贵州',
-					children: [
-						{
-							name: '贵阳',
-							children: [
-								{name: '南明区'},
-								{name: '观山湖区'},
-								{name: '云岩区'},
-							]
-						},
-						{
-							name: '六盘水',
-							children: [
-								{name: '中山区'},
-								{name: '凉都区'},
-								{name: '主城区'},
-							]
-						}
-					]
-				}, {
-					name: '四川',
-					children: [
-						{
-							name: '成都',
-							children: [
-								{name: '郫县区'},
-								{name: '高新区'},
-								{name: '武侯区'},
-							],
-						}, {
-							name: '汶川',
-							children: [
-								{name: '映秀镇'},
-								{name: '北川'},
-								{name: '阿坝州'},
-							],
-						},
-					]
-				}]
+				source: ajax()
 			}
 		}
 	}

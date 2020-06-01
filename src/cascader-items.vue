@@ -2,7 +2,7 @@
 	<div class="cascaderItems" :style="{height}">
 		<div class="left">
 			<div class="label" v-for="item in items" @click="onClickSelected(item)">
-				{{item.name}}
+				<span class="name">{{item.name}}</span>
 				<span v-if="item.children"> > </span>
 			</div>
 		</div>
@@ -62,11 +62,10 @@
 <style scoped lang="scss">
 	@import "var";
 	.cascaderItems {display: flex;justify-content: flex-start;align-items: flex-start;height: 100px;
-		@extend .box-shadow;
-		.left { height: 100%;padding: .3em 0;}
+		.left { height: 100%;padding: .3em 0;overflow: auto}
 		.right {height: 100%;border-left: 1px solid $border-color-light;}
-		.label { padding: .5em 1em;display: flex;align-items: center;cursor: pointer;white-space: nowrap;
-			&:hover {background: $grey;}
+		.label { padding: .5em 1em;display: flex;align-items: center;cursor: pointer;white-space: nowrap; &:hover {background: $grey;}
+			> .name {margin-right: 1em;user-select: none;}
 		}
 	}
 </style>

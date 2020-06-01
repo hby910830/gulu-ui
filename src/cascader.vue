@@ -52,11 +52,11 @@
 <style scoped lang="scss">
 	@import "var";
 	.cascader {
+		display: inline-block;
 		position: relative;
 		.trigger {background: white;height: $input-height;display: inline-flex;align-items: center;padding: 0 1em;min-width: 10em;border: 1px solid $border-color;border-radius: $border-radius;}
 		.popover-wrapper { position: absolute; top: 100%; left: 0; background: white; display: flex;margin-top: 8px;z-index: 1;
 			@extend .box-shadow;
-			.label {white-space: nowrap;}
 		}
 	}
 </style>
