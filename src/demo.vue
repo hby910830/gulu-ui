@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<p>111111</p>
-		<y-cascader :source="source" popover-height="200px"></y-cascader>
+		<p>{{selected}}</p>
+		<y-cascader :source="source" popover-height="200px"
+								:selected.sync="selected"
+		></y-cascader>
 		<p>2222 </p>
 	</div>
 </template>
@@ -14,6 +16,7 @@
 		components: {'y-cascader': Cascader},
 		data() {
 			return {
+				selected: [],
 				source: [{
 					name: '浙江',
 					children: [
