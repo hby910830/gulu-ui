@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<y-cascader :source="source" popover-height="200px"
-								:selected.sync="selected"
-		></y-cascader>
+		<div style="padding: 20px">
+			<y-cascader :source="source" popover-height="200px" :selected.sync="selected"></y-cascader>
+		</div>
 	</div>
 </template>
 
