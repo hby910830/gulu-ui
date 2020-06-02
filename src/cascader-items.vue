@@ -1,7 +1,7 @@
 <template>
 	<div class="cascaderItems" :style="{height}">
 		<div class="left">
-			<div class="label" v-for="item in items" @click="onClickSelected(item)">
+			<div class="label" v-for="item in items" @click="onClickLabel(item)">
 				<span class="name">{{item.name}}</span>
 				<span v-if="item.children"> > </span>
 			</div>
@@ -10,6 +10,7 @@
 			<gulu-cascader-items :level="level + 1" :items="rightItems"
 													 :selected="selected"
 													 :height="height"
+													 :load-data="loadData"
 													 @update:selected="onUpdateSelected"
 			></gulu-cascader-items>
 		</div>
@@ -30,6 +31,9 @@
 				type: Array,
 				default: () => []
 			},
+			loadData: {
+				type: Function
+			},
 			level: {
 				type: Number,
 				default: 0
@@ -37,19 +41,19 @@
 		},
 		computed: {
 			rightItems() {
-				const currentSelected = this.selected && this.selected[this.level]
-				if (currentSelected && currentSelected.children) {
-					return currentSelected.children
-				} else {
-					return null
+				if (this.selected[this.level]) {
+					let selected = this.items.filter((item) => item.name === this.selected[this.level].name)
+					if (selected && selected[0].children && selected[0].children.length > 0) {
+						return selected[0].children
+					}
 				}
 			}
 		},
 		methods: {
-			onClickSelected(item) {
-				const copy = JSON.parse(JSON.stringify(this.selected))
+			onClickLabel(item) {
+				let copy = JSON.parse(JSON.stringify(this.selected))
 				copy[this.level] = item
-				copy.splice(this.level + 1)	//每次改变就清空后面的选项
+				copy.splice(this.level + 1) // 一句话
 				this.$emit('update:selected', copy)
 			},
 			onUpdateSelected(newSelected) {
@@ -64,7 +68,8 @@
 	.cascaderItems {display: flex;justify-content: flex-start;align-items: flex-start;height: 100px;
 		.left { height: 100%;padding: .3em 0;overflow: auto}
 		.right {height: 100%;border-left: 1px solid $border-color-light;}
-		.label { padding: .5em 1em;display: flex;align-items: center;cursor: pointer;white-space: nowrap; &:hover {background: $grey;}
+		.label { padding: .5em 1em;display: flex;align-items: center;cursor: pointer;white-space: nowrap;
+			&:hover {background: $grey;}
 			> .name {margin-right: 1em;user-select: none;}
 		}
 	}
