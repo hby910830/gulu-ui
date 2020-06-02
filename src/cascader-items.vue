@@ -3,7 +3,7 @@
 		<div class="left">
 			<div class="label" v-for="item in items" @click="onClickLabel(item)">
 				<span class="name">{{item.name}}</span>
-				<span v-if="item.children"> > </span>
+				<span class="icon" v-if="rightArrowVisible(item)"> > </span>
 			</div>
 		</div>
 		<div class="right" v-if="rightItems">
@@ -50,6 +50,9 @@
 			}
 		},
 		methods: {
+			rightArrowVisible (item) {
+				return this.loadData ? !item.isLeaf : item.children
+			},
 			onClickLabel(item) {
 				let copy = JSON.parse(JSON.stringify(this.selected))
 				copy[this.level] = item
@@ -71,6 +74,10 @@
 		.label { padding: .5em 1em;display: flex;align-items: center;cursor: pointer;white-space: nowrap;
 			&:hover {background: $grey;}
 			> .name {margin-right: 1em;user-select: none;}
+			.icon {
+				margin-left: auto;
+				transform: scale(.5);
+			}
 		}
 	}
 </style>

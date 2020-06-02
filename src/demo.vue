@@ -16,6 +16,9 @@
 	function ajax(parentId = 0, success) {	//回调
 		return setTimeout(() => {
 			const result = db.filter(item => item.parent_id === parentId)
+			result.forEach(node => {
+				node.isLeaf = !db.filter(item => item.parent_id === node.id).length
+			})
 			return success(result)
 		}, 1000)
 	}
@@ -24,6 +27,9 @@
 		return new Promise((resolve) => {	//Promise
 			setTimeout(() => {
 				const result = db.filter(item => item.parent_id === parentId)
+				result.forEach(node => {
+					node.isLeaf = !db.filter(item => item.parent_id === node.id).length
+				})
 				resolve(result)
 			}, 1000)
 		})
@@ -51,18 +57,13 @@
 				ajax2(id).then(result => {
 					updateSource(result)
 				})
-			},
-			xxx(){
-				ajax2(this.selected[0].id).then(result => {
-					let lastLevelSelected = this.source.filter(item => item.id === this.selected[0].id)[0]
-					this.$set(lastLevelSelected, 'children', result)
-				})
-			},
+			}
 		}
 	}
 </script>
 
-<style scoped>
+<style>
 	* {margin: 0; padding: 0; box-sizing: border-box;}
-	body {background: white;}
+	html {--font-size: 14px;}
+	body {background: white;font-size: var(--font-size)}
 </style>
