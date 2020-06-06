@@ -1,6 +1,6 @@
 <template>
-	<div class="cascader">
-		<div class="trigger" @click="popoverVisible = !popoverVisible">
+	<div class="cascader" ref="cascader">
+		<div class="trigger" @click="toggle">
 			{{result || '&nbsp;'}}
 		</div>
 		<div class="popover-wrapper" v-show="popoverVisible">
@@ -46,9 +46,30 @@
 			}
 		},
 		methods: {
+			onClickDocument(e) {
+				const {cascader} = this.$refs
+				if (!cascader.contains(e.target)) {
+					this.close()
+				}
+			},
+			open() {
+				this.popoverVisible = true
+				document.addEventListener('click', this.onClickDocument)
+			},
+			close() {
+				this.popoverVisible = false
+				document.removeEventListener('click', this.onClickDocument)
+			},
+			toggle() {
+				if (this.popoverVisible) {
+					this.close()
+				} else {
+					this.open()
+				}
+			},
 			onUpdateSelected(newSelected) {
 				this.$emit('update:selected', newSelected)
-				let lastItem = newSelected[newSelected.length -1]
+				let lastItem = newSelected[newSelected.length - 1]
 				let simplest = (children, id) => {
 					return children.filter(item => item.id === id)[0]
 				}
@@ -67,8 +88,7 @@
 						return found
 					} else {
 						found = simplest(hasChildren, id)
-						if (found) { return found }
-						else {
+						if (found) { return found } else {
 							for (let i = 0; i < hasChildren.length; i++) {
 								found = complex(hasChildren[i].children, id)
 								if (found) {
