@@ -3,7 +3,10 @@
 		<div class="left">
 			<div class="label" v-for="item in items" @click="onClickLabel(item)">
 				<span class="name">{{item.name}}</span>
-				<span class="icon" v-if="rightArrowVisible(item)"> > </span>
+				<span class="icons">
+					<span class="icon" v-if="rightArrowVisible(item)"> > </span>
+					<icon class="loading" name="loading"></icon>
+				</span>
 			</div>
 		</div>
 		<div class="right" v-if="rightItems">
@@ -18,8 +21,11 @@
 </template>
 
 <script>
+	import Icon from './icon'
+
 	export default {
 		name: 'GuluCascaderItems',		// name可以把自己当作组件调用自己
+		components: {Icon},
 		props: {
 			items: {
 				type: Array
@@ -50,7 +56,7 @@
 			}
 		},
 		methods: {
-			rightArrowVisible (item) {
+			rightArrowVisible(item) {
 				return this.loadData ? !item.isLeaf : item.children
 			},
 			onClickLabel(item) {
@@ -74,9 +80,11 @@
 		.label { padding: .5em 1em;display: flex;align-items: center;cursor: pointer;white-space: nowrap;
 			&:hover {background: $grey;}
 			> .name {margin-right: 1em;user-select: none;}
-			.icon {
+			.icons {
 				margin-left: auto;
-				transform: scale(.5);
+				.loading {
+					animation: spin 2s infinite linear;
+				}
 			}
 		}
 	}
