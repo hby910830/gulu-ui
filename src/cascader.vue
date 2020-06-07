@@ -7,6 +7,7 @@
 			<cascaderItems :items="source" class="popover"
 										 :height="popoverHeight"
 										 :loadData="loadData"
+										 :loading-item="loadingItem"
 										 :selected="selected"
 										 @update:selected="onUpdateSelected"
 			></cascaderItems>
@@ -39,7 +40,8 @@
 		},
 		data() {
 			return {
-				popoverVisible: false
+				popoverVisible: false,
+				loadingItem: {}
 			}
 		},
 		computed: {

@@ -20,7 +20,7 @@
 				node.isLeaf = !db.filter(item => item.parent_id === node.id).length
 			})
 			return success(result)
-		}, 1000)
+		}, 2000)
 	}
 
 	function ajax2(parentId = 0) {
@@ -31,7 +31,7 @@
 					node.isLeaf = !db.filter(item => item.parent_id === node.id).length
 				})
 				resolve(result)
-			}, 1000)
+			}, 2000)
 		})
 	}
 
