@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<y-slides :selected="selected">
+		<y-slides :selected.sync="selected">
 			<y-slides-item name="1">
 				<div class="box">1</div>
 			</y-slides-item>
@@ -30,14 +30,6 @@
 			}
 		},
 		created() {
-			let n = 1
-			setInterval(() =>{
-				if(n === 5){
-					n = 1
-				}
-				this.selected = n.toString()
-				n++
-			}, 3000)
 		}
 	}
 </script>
