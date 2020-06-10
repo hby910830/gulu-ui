@@ -1,5 +1,5 @@
 <template>
-	<div class="y-slides">
+	<div class="y-slides" @mouseenter="pause" @mouseleave="playAutomatically">
 		<div class="y-slides-window">
 			<div class="y-slides-wrapper">
 				<slot></slot>
@@ -30,33 +30,47 @@
 		data(){
 			return {
 				childrenLength: 0,
-				lastSelectedIndex: undefined
+				lastSelectedIndex: undefined,
+				timerId: undefined
 			}
 		},
 		computed:{
 			selectedIndex(){
-				return this.names.indexOf(this.selected)
+				return this.names.indexOf(this.selected) || 0
 			},
 			names(){
-				return this.$children.map(vm => vm.name) || 0
+				return this.$children.map(vm => vm.name)
 			}
 		},
 		methods: {
 			playAutomatically() {
-				let index = this.names.indexOf(this.getSelected())
-				let run = () => {	//用 setTimeout 模拟 setInterval
-					let newIndex = index - 1
-					if(newIndex === -1){newIndex = this.names.length -1}
-					if(newIndex === this.names.length){newIndex = 0}
-					this.select(newIndex)
-					setTimeout(run, 2000)
+				if(!this.timerId){
+					let run = () => {	//用 setTimeout 模拟 setInterval
+						let index = this.names.indexOf(this.getSelected())
+						let newIndex = index - 1
+						if(newIndex === -1){newIndex = this.names.length - 1}
+						if(newIndex === this.names.length){newIndex = 0}
+						this.select(newIndex)
+						this.timerId = setTimeout(run, 2000)
+					}
+					this.timerId = setTimeout(run, 2000)
 				}
-				setTimeout(run, 2000)
+			},
+			pause(){
+				clearTimeout(this.timerId)
+				this.timerId = undefined
 			},
 			updateChildren() {
 				let selected = this.getSelected()
 				this.$children.forEach(vm => {
-					vm.reverse = this.lastSelectedIndex < this.selectedIndex
+					let reverse = this.lastSelectedIndex < this.selectedIndex
+					if(this.lastSelectedIndex === this.$children.length -1 && this.selectedIndex === 0){
+						reverse = false
+					}
+					if(this.lastSelectedIndex === 0 && this.selectedIndex === this.$children.length -1){
+						reverse = true
+					}
+					vm.reverse = reverse
 					this.$nextTick(() => {
 						vm.selected = selected
 					})
@@ -72,9 +86,9 @@
 			}
 		},
 		mounted() {
-			this.childrenLength = this.$children.length
 			this.updateChildren()
 			this.playAutomatically()
+			this.childrenLength = this.$children.length
 		},
 		updated() {
 			this.updateChildren()

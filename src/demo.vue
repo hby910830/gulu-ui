@@ -10,9 +10,6 @@
 			<y-slides-item name="3">
 				<div class="box">3</div>
 			</y-slides-item>
-			<y-slides-item name="4">
-				<div class="box">4</div>
-			</y-slides-item>
 		</y-slides>
 	</div>
 </template>
@@ -26,7 +23,7 @@
 		components: {YSlides, YSlidesItem},
 		data() {
 			return {
-				selected: '3'
+				selected: '1'
 			}
 		},
 		created() {
@@ -40,6 +37,9 @@
 		width: 100%;
 		height: 350px;
 		background: #ddd;
-		border: 1px solid red;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 30px;
 	}
 </style>
