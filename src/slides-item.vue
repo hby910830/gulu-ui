@@ -41,10 +41,10 @@
 	.slide-enter {
 		transform: translateX(100%);
 	}
-	.slide-leave-to {
+	.slide-enter.reverse {
 		transform: translateX(-100%);
 	}
-	.slide-enter.reverse {
+	.slide-leave-to {
 		transform: translateX(-100%);
 	}
 	.slide-leave-to.reverse {

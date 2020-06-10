@@ -51,9 +51,9 @@
 						if(newIndex === -1){newIndex = this.names.length - 1}
 						if(newIndex === this.names.length){newIndex = 0}
 						this.select(newIndex)
-						this.timerId = setTimeout(run, 2000)
+						this.timerId = setTimeout(run, 3000)
 					}
-					this.timerId = setTimeout(run, 2000)
+					this.timerId = setTimeout(run, 3000)
 				}
 			},
 			pause(){
