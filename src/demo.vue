@@ -23,7 +23,7 @@
 		components: {YSlides, YSlidesItem},
 		data() {
 			return {
-				selected: '1'
+				selected: undefined
 			}
 		},
 		created() {

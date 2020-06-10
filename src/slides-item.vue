@@ -8,7 +8,6 @@
 
 <script>
 	export default {
-		name: 'slides-item',
 		props: {
 			name: {
 				type: String,
@@ -30,8 +29,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.y-slides-item {
-	}
 	.slide-leave-active {
 		position: absolute;
 		width: 100%;
@@ -43,18 +40,14 @@
 	}
 	.slide-enter {
 		transform: translateX(100%);
-		opacity: 0;
 	}
 	.slide-leave-to {
-		transform: translateX(-100%) scale(.5);
-		opacity: 0;
+		transform: translateX(-100%);
 	}
 	.slide-enter.reverse {
 		transform: translateX(-100%);
-		opacity: 0;
 	}
 	.slide-leave-to.reverse {
-		transform: translateX(100%) scale(.5);
-		opacity: 0;
+		transform: translateX(100%);
 	}
 </style>
