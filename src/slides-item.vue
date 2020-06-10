@@ -39,7 +39,7 @@
 		left: 0;
 	}
 	.slide-enter-active, .slide-leave-active {
-		transition: all 1s;
+		transition: all 3s;
 	}
 	.slide-enter {
 		transform: translateX(100%);

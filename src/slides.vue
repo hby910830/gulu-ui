@@ -5,9 +5,11 @@
 				<slot></slot>
 			</div>
 		</div>
-		<div>
-			<span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1 }">
-				{{n}}
+		<div class="y-slides-dots">
+			<span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1 }"
+				@click="select(n -1)"
+			>
+				{{n -1}}
 			</span>
 		</div>
 	</div>
@@ -27,7 +29,8 @@
 		},
 		data(){
 			return {
-				childrenLength: 0
+				childrenLength: 0,
+				lastSelectedIndex: undefined
 			}
 		},
 		computed:{
@@ -45,7 +48,7 @@
 					let newIndex = index - 1
 					if(newIndex === -1){newIndex = this.names.length -1}
 					if(newIndex === this.names.length){newIndex = 0}
-					this.$emit('update:selected', this.names[newIndex])
+					this.select(newIndex)
 					setTimeout(run, 2000)
 				}
 				setTimeout(run, 2000)
@@ -53,11 +56,15 @@
 			updateChildren() {
 				let selected = this.getSelected()
 				this.$children.forEach(vm => {
-					const newIndex = this.names.indexOf(selected)
-					const oldIndex = this.names.indexOf(vm.name)
-					vm.selected = selected
-					vm.reverse = newIndex <= oldIndex
+					vm.reverse = this.lastSelectedIndex < this.selectedIndex
+					this.$nextTick(() => {
+						vm.selected = selected
+					})
 				})
+			},
+			select(index){
+				this.lastSelectedIndex = this.selectedIndex
+				this.$emit('update:selected', this.names[index])
 			},
 			getSelected(){
 				let first = this.$children[0]
@@ -83,6 +90,13 @@
 		}
 		&-wrapper {
 			position: relative;
+		}
+		&-dots{
+			> span{
+				&.active{
+					background: red;
+				}
+			}
 		}
 	}
 </style>
