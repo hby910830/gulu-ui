@@ -1,6 +1,6 @@
 <template>
 	<transition name="slide">
-		<div class="y-slides-item" v-if="visible">
+		<div class="y-slides-item" v-if="visible" :class="{reverse}">
 			<slot></slot>
 		</div>
 	</transition>
@@ -17,7 +17,8 @@
 		},
 		data() {
 			return {
-				selected: undefined
+				selected: undefined,
+				reverse: false
 			}
 		},
 		computed:{
@@ -33,6 +34,7 @@
 	}
 	.slide-leave-active {
 		position: absolute;
+		width: 100%;
 		top: 0;
 		left: 0;
 	}
@@ -41,9 +43,18 @@
 	}
 	.slide-enter {
 		transform: translateX(100%);
-		position: absolute;
+		opacity: 0;
 	}
 	.slide-leave-to {
+		transform: translateX(-100%) scale(.5);
+		opacity: 0;
+	}
+	.slide-enter.reverse {
 		transform: translateX(-100%);
+		opacity: 0;
+	}
+	.slide-leave-to.reverse {
+		transform: translateX(100%) scale(.5);
+		opacity: 0;
 	}
 </style>

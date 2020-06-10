@@ -5,6 +5,11 @@
 				<slot></slot>
 			</div>
 		</div>
+		<div>
+			<span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1 }">
+				{{n}}
+			</span>
+		</div>
 	</div>
 </template>
 
@@ -20,30 +25,38 @@
 				default: true
 			}
 		},
+		data(){
+			return {
+				childrenLength: 0
+			}
+		},
+		computed:{
+			selectedIndex(){
+				return this.names.indexOf(this.selected)
+			},
+			names(){
+				return this.$children.map(vm => vm.name) || 0
+			}
+		},
 		methods: {
 			playAutomatically() {
-				const names = this.$children.map(vm => vm.name)
-				let index = names.indexOf(this.getSelected())
-				// setInterval(() => {
-				// 	if(index === names.length){
-				// 		index = 0
-				// 	}
-				// 	this.$emit('update:selected', names[index + 1])
-				// 	index++
-				// }, 2000)
-
+				let index = this.names.indexOf(this.getSelected())
 				let run = () => {	//用 setTimeout 模拟 setInterval
-					if(index === names.length){index = 0}
-					this.$emit('update:selected', names[index + 1])
-					index++
+					let newIndex = index - 1
+					if(newIndex === -1){newIndex = this.names.length -1}
+					if(newIndex === this.names.length){newIndex = 0}
+					this.$emit('update:selected', this.names[newIndex])
 					setTimeout(run, 2000)
 				}
-				run()
+				setTimeout(run, 2000)
 			},
 			updateChildren() {
 				let selected = this.getSelected()
 				this.$children.forEach(vm => {
+					const newIndex = this.names.indexOf(selected)
+					const oldIndex = this.names.indexOf(vm.name)
 					vm.selected = selected
+					vm.reverse = newIndex <= oldIndex
 				})
 			},
 			getSelected(){
@@ -52,6 +65,7 @@
 			}
 		},
 		mounted() {
+			this.childrenLength = this.$children.length
 			this.updateChildren()
 			this.playAutomatically()
 		},
@@ -63,8 +77,9 @@
 
 <style lang="scss" scoped>
 	.y-slides {
-		display: inline-flex;
+		margin: 40px;
 		&-window {
+			overflow: hidden;
 		}
 		&-wrapper {
 			position: relative;

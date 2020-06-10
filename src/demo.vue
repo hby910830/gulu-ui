@@ -26,7 +26,7 @@
 		components: {YSlides, YSlidesItem},
 		data() {
 			return {
-				selected: ''
+				selected: '3'
 			}
 		},
 		created() {
@@ -37,8 +37,8 @@
 <style>
 	* {margin: 0; padding: 0; box-sizing: border-box;}
 	.box {
-		width: 200px;
-		height: 150px;
+		width: 100%;
+		height: 350px;
 		background: #ddd;
 		border: 1px solid red;
 	}
