@@ -12,11 +12,13 @@
 			</div>
 		</div>
 		<div class="y-slides-dots">
+			<span @click="select(selectedIndex - 1)">&lt;</span>
 			<span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1 }"
 				@click="select(n -1)"
 			>
 				{{n}}
 			</span>
+			<span @click="select(selectedIndex + 1)">&gt;</span>
 		</div>
 	</div>
 </template>
