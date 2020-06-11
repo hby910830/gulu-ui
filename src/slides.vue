@@ -3,7 +3,6 @@
 			 @mouseenter="pause"
 			 @mouseleave="playAutomatically"
 			 @touchstart="onTouchStart"
-			 @touchmove="onTouchmove"
 			 @touchend="onTouchEnd"
 	>
 		<div class="y-slides-window">
@@ -90,9 +89,6 @@
 			onTouchStart (e) {
 				this.pause()
 				this.startTouch = e.touches[0]
-			},
-			onTouchmove(){
-				console.log('边摸边动')
 			},
 			onTouchEnd (e) {
 				this.endTouch = e.changedTouches[0]
