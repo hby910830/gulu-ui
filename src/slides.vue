@@ -1,5 +1,11 @@
 <template>
-	<div class="y-slides" @mouseenter="pause" @mouseleave="playAutomatically">
+	<div class="y-slides"
+			 @mouseenter="pause"
+			 @mouseleave="playAutomatically"
+			 @touchstart="onTouchStart"
+			 @touchmove="onTouchmove"
+			 @touchend="onTouchEnd"
+	>
 		<div class="y-slides-window">
 			<div class="y-slides-wrapper">
 				<slot></slot>
@@ -31,12 +37,15 @@
 			return {
 				childrenLength: 0,
 				lastSelectedIndex: undefined,
-				timerId: undefined
+				timerId: undefined,
+				startTouch: undefined,
+				endTouch: undefined
 			}
 		},
 		computed:{
 			selectedIndex(){
-				return this.names.indexOf(this.selected) || 0
+				let index = this.names.indexOf(this.selected)
+				return index === -1 ? 0 : index
 			},
 			names(){
 				return this.$children.map(vm => vm.name)
@@ -48,8 +57,6 @@
 					let run = () => {	//用 setTimeout 模拟 setInterval
 						let index = this.names.indexOf(this.getSelected())
 						let newIndex = index + 1
-						if(newIndex === -1){newIndex = this.names.length - 1}
-						if(newIndex === this.names.length){newIndex = 0}
 						this.select(newIndex)
 						this.timerId = setTimeout(run, 3000)
 					}
@@ -78,9 +85,37 @@
 					})
 				})
 			},
-			select(index){
+			onTouchStart (e) {
+				this.pause()
+				this.startTouch = e.touches[0]
+			},
+			onTouchmove(){
+				console.log('边摸边动')
+			},
+			onTouchEnd (e) {
+				this.endTouch = e.changedTouches[0]
+				let {clientX: x1, clientY: y1} = this.startTouch
+				let {clientX: x2, clientY: y2} = this.endTouch
+
+				let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2 ))
+				let delaty = Math.abs(y2 - y1)
+				let rate = distance / delaty
+				if(rate > 2){
+					if(x2 > x1){
+						this.select(this.selectedIndex + 1)
+					}else{
+						this.select(this.selectedIndex - 1)
+					}
+				}
+				this.$nextTick(() => {
+					this.playAutomatically()
+				})
+			},
+			select(newIndex){
 				this.lastSelectedIndex = this.selectedIndex
-				this.$emit('update:selected', this.names[index])
+				if(newIndex === -1){newIndex = this.names.length - 1}
+				if(newIndex === this.names.length){newIndex = 0}
+				this.$emit('update:selected', this.names[newIndex])
 			},
 			getSelected(){
 				let first = this.$children[0]
