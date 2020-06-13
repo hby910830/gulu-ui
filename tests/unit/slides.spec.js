@@ -12,29 +12,83 @@ describe('Slides.vue', () => {
 		expect(Slides).to.exist
 	})
 	it('接受GuluSlidesItem, 默认展示第一个', (done) => {
-		Vue.component('YSlidesItem', SlidesItem)
-		const wrapper = mount(Slides, {
-		  propsData:{
-		    autoPlay: false
+    Vue.component('YSlidesItem', SlidesItem)
+    const wrapper = mount(Slides, {
+      propsData: {
+        autoPlay: false
       },
-			slots: {
-				default: `
+      slots: {
+        default: `
           <y-slides-item name="1">
-            <div class="box">1</div>
+            <div class="box1">1</div>
           </y-slides-item>
           <y-slides-item name="2">
-            <div class="box">2</div>
+            <div class="box2">2</div>
           </y-slides-item>
           <y-slides-item name="3">
-            <div class="box">3</div>
+            <div class="box3">3</div>
           </y-slides-item>
 			`
-			}
-		})
+      }
+    })
     setTimeout(() => {
-      console.log(wrapper.find('.box').element)
-      expect(wrapper.find('.box').element).to.exist
+      expect(wrapper.find('.box1').exists()).to.be.true
       done()
     })
-	})
+  })
+  it('selected是几，选中的就是几', (done) => {
+    Vue.component('YSlidesItem', SlidesItem)
+    const wrapper = mount(Slides, {
+      propsData: {
+        autoPlay: false,
+        selected: '2'
+      },
+      slots: {
+        default: `
+          <y-slides-item name="1">
+            <div class="box1">1</div>
+          </y-slides-item>
+          <y-slides-item name="2">
+            <div class="box2">2</div>
+          </y-slides-item>
+          <y-slides-item name="3">
+            <div class="box3">3</div>
+          </y-slides-item>
+			`
+      }
+    })
+    setTimeout(() => {
+      expect(wrapper.find('.box2').exists()).to.be.true
+      done()
+    })
+  })
+
+  xit('点击第二张就展示第二张', (done) => {
+    Vue.component('YSlidesItem', SlidesItem)
+    const wrapper = mount(Slides, {
+      propsData:{
+        autoPlay: false,
+        selected: '1'
+      },
+      slots: {
+        default: `
+          <y-slides-item name="1">
+            <div class="box1">1</div>
+          </y-slides-item>
+          <y-slides-item name="2">
+            <div class="box2">2</div>
+          </y-slides-item>
+          <y-slides-item name="3">
+            <div class="box3">3</div>
+          </y-slides-item>
+			`
+      }
+    })
+    setTimeout(() => {
+      wrapper.find('[data-index="1"]').trigger('click')
+      console.log(wrapper.html())
+      expect(wrapper.find('.box2').exists()).to.be.true
+      done()
+    })
+  })
 })

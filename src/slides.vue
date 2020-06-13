@@ -13,7 +13,9 @@
 		<div class="y-slides-dots">
 			<span @click="select(selectedIndex - 1)">&lt;</span>
 			<span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1 }"
-				@click="select(n -1)"
+						:key="n"
+						:data-index="n -1"
+						@click="select(n -1)"
 			>
 				{{n}}
 			</span>
@@ -34,7 +36,7 @@
 				default: true
 			}
 		},
-		data(){
+		data() {
 			return {
 				childrenLength: 0,
 				lastSelectedIndex: undefined,
@@ -43,18 +45,18 @@
 				endTouch: undefined
 			}
 		},
-		computed:{
-			selectedIndex(){
+		computed: {
+			selectedIndex() {
 				let index = this.names.indexOf(this.selected)
 				return index === -1 ? 0 : index
 			},
-			names(){
+			names() {
 				return this.$children.map(vm => vm.name)
 			}
 		},
 		methods: {
 			playAutomatically() {
-				if(!this.timerId){
+				if (!this.timerId) {
 					let run = () => {	//用 setTimeout 模拟 setInterval
 						let index = this.names.indexOf(this.getSelected())
 						let newIndex = index + 1
@@ -64,7 +66,7 @@
 					this.timerId = setTimeout(run, 3000)
 				}
 			},
-			pause(){
+			pause() {
 				clearTimeout(this.timerId)
 				this.timerId = undefined
 			},
@@ -72,11 +74,11 @@
 				let selected = this.getSelected()
 				this.$children.forEach(vm => {
 					let reverse = this.lastSelectedIndex < this.selectedIndex
-					if(this.timerId){
-						if(this.lastSelectedIndex === this.$children.length -1 && this.selectedIndex === 0){
+					if (this.timerId) {
+						if (this.lastSelectedIndex === this.$children.length - 1 && this.selectedIndex === 0) {
 							reverse = false
 						}
-						if(this.lastSelectedIndex === 0 && this.selectedIndex === this.$children.length -1){
+						if (this.lastSelectedIndex === 0 && this.selectedIndex === this.$children.length - 1) {
 							reverse = true
 						}
 					}
@@ -86,22 +88,21 @@
 					})
 				})
 			},
-			onTouchStart (e) {
+			onTouchStart(e) {
 				this.pause()
 				this.startTouch = e.touches[0]
 			},
-			onTouchEnd (e) {
+			onTouchEnd(e) {
 				this.endTouch = e.changedTouches[0]
 				let {clientX: x1, clientY: y1} = this.startTouch
 				let {clientX: x2, clientY: y2} = this.endTouch
-
-				let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2 ))
+				let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
 				let delaty = Math.abs(y2 - y1)
 				let rate = distance / delaty
-				if(rate > 2){
-					if(x2 > x1){
+				if (rate > 2) {
+					if (x2 > x1) {
 						this.select(this.selectedIndex + 1)
-					}else{
+					} else {
 						this.select(this.selectedIndex - 1)
 					}
 				}
@@ -109,20 +110,20 @@
 					this.playAutomatically()
 				})
 			},
-			select(newIndex){
+			select(newIndex) {
 				this.lastSelectedIndex = this.selectedIndex
-				if(newIndex === -1){newIndex = this.names.length - 1}
-				if(newIndex === this.names.length){newIndex = 0}
+				if (newIndex === -1) {newIndex = this.names.length - 1}
+				if (newIndex === this.names.length) {newIndex = 0}
 				this.$emit('update:selected', this.names[newIndex])
 			},
-			getSelected(){
+			getSelected() {
 				let first = this.$children[0]
 				return this.selected || first.name
 			}
 		},
 		mounted() {
 			this.updateChildren()
-			if(this.autoPlay){
+			if (this.autoPlay) {
 				this.playAutomatically()
 			}
 			this.childrenLength = this.$children.length
@@ -142,13 +143,12 @@
 		&-wrapper {
 			position: relative;
 		}
-		&-dots{
+		&-dots {
 			padding: 8px 0;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
-			> span{
+			> span {
 				width: 20px;
 				height: 20px;
 				border-radius: 50%;
@@ -158,13 +158,13 @@
 				background: #ddd;
 				margin: 0 8px;
 				font-size: 12px;
-				&:hover{
+				&:hover {
 					cursor: pointer;
 				}
-				&.active{
+				&.active {
 					background: black;
 					color: white;
-					&:hover{
+					&:hover {
 						cursor: default;
 					}
 				}
