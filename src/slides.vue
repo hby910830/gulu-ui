@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<div class="y-slides-dots">
-			<span @click="select(selectedIndex - 1)">&lt;</span>
+			<span @click="select(selectedIndex - 1)" data-action="prev">&lt;</span>
 			<span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1 }"
 						:key="n"
 						:data-index="n -1"
@@ -19,7 +19,7 @@
 			>
 				{{n}}
 			</span>
-			<span @click="select(selectedIndex + 1)">&gt;</span>
+			<span @click="select(selectedIndex + 1)" data-action="next">&gt;</span>
 		</div>
 	</div>
 </template>
@@ -69,6 +69,12 @@
 					}
 					this.timerId = setTimeout(run, this.autoPlayDelay)
 				}
+			},
+			onClickPrev () {
+				this.select(this.selectedIndex - 1)
+			},
+			onClickNext () {
+				this.select(this.selectedIndex + 1)
 			},
 			pause() {
 				clearTimeout(this.timerId)
