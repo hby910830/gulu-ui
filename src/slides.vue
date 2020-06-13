@@ -122,7 +122,9 @@
 		},
 		mounted() {
 			this.updateChildren()
-			this.playAutomatically()
+			if(this.autoPlay){
+				this.playAutomatically()
+			}
 			this.childrenLength = this.$children.length
 		},
 		updated() {
