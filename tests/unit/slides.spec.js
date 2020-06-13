@@ -96,4 +96,35 @@ describe('Slides.vue', () => {
       wrapper.find('[data-index="1"]').trigger('click')
     })
 	})
+	it('会自动播放', (done) => {
+		Vue.component('YSlidesItem', SlidesItem)
+		const callback = sinon.fake()
+		const wrapper = mount(Slides, {
+			propsData: {
+				autoPlay: true,
+				selected: '1',
+				autoPlayDelay: 20
+			},
+			slots: {
+				default: `
+          <y-slides-item name="1">
+            <div class="box1">1</div>
+          </y-slides-item>
+          <y-slides-item name="2">
+            <div class="box2">2</div>
+          </y-slides-item>
+          <y-slides-item name="3">
+            <div class="box3">3</div>
+          </y-slides-item>
+			  `
+			},
+			listeners: {
+				'update:selected': callback
+			}
+		})
+    setTimeout(() => {
+      expect(callback).to.have.been.calledWith('2')
+	    done()
+    },20)
+	})
 })
