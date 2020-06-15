@@ -81,7 +81,7 @@
 </style>
 
 <style scoped lang="scss">
- @import "var";
+ @import "../styles/var";
  $height: 20px;
  $width: 20px;
  $font-size: 12px;
