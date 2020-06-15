@@ -15,8 +15,8 @@
 </template>
 
 <script>
-	import YSlides from './slides'
-	import YSlidesItem from './slides-item'
+	import YSlides from './slides/slides'
+	import YSlidesItem from './slides/slides-item'
 
 	export default {
 		name: 'demo',
