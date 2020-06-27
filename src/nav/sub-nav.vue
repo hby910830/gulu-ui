@@ -1,5 +1,7 @@
 <template>
-	
+	<div class="y-sub-item">
+		<slot></slot>
+	</div>
 </template>
 
 <script>
@@ -8,6 +10,6 @@
 	}
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+	.y-sub-item {}
 </style>
