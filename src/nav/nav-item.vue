@@ -29,10 +29,19 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "var";
 	.y-nav-item {
 		padding: 10px 20px;
+		position: relative;
 		&.selected {
-			background: red;
+			&::after{
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				border-bottom: 2px solid $blue;
+				width: 100%;
+			}
 		}
 	}
 </style>
