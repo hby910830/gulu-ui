@@ -65,7 +65,9 @@
 <style lang="scss" scoped>
 	@import "var";
 	.y-nav {
+		color: $color;
 		display: flex;
 		border-bottom: 1px solid $grey;
+		cursor: default;
 	}
 </style>

@@ -26,6 +26,7 @@
 </script>
 
 <style lang="scss" scoped>
+	@import "var";
 	.y-sub-nav {
 		position: relative;
 		> span {
@@ -33,11 +34,18 @@
 			display: block;
 		}
 		&-popover {
+			background: white;
 			position: absolute;
 			top: 100%;
 			left: 0;
-			border: 1px solid black;
 			white-space: nowrap;
+			margin-top: 4px;
+			box-shadow: 0 0 3px fade_out(black, .7);
+			border-radius: $border-radius;
+			color: $light-color;
+			font-size: $font-size;
+			min-width: 6em;
+			text-align: center;
 		}
 	}
 	.y-sub-nav .y-sub-nav .y-sub-nav-popover {

@@ -17,7 +17,7 @@
 				selected: false
 			}
 		},
-		created(){
+		created() {
 			this.root.addItem(this)
 		},
 		methods: {
@@ -34,13 +34,22 @@
 		padding: 10px 20px;
 		position: relative;
 		&.selected {
-			&::after{
+			&::after {
 				content: '';
 				position: absolute;
 				left: 0;
 				bottom: 0;
 				border-bottom: 2px solid $blue;
 				width: 100%;
+			}
+		}
+	}
+	.y-sub-nav .y-nav-item {
+		&.selected {
+			background: $grey;
+			color: $color;
+			&::after {
+				display: none;
 			}
 		}
 	}
