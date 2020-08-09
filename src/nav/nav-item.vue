@@ -11,10 +11,14 @@
 			name: String,
 			required: true
 		},
+		inject: ['root'],
 		data() {
 			return {
 				selected: false
 			}
+		},
+		created(){
+			this.root.addItem(this)
 		},
 		methods: {
 			onClick() {
