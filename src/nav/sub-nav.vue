@@ -12,13 +12,13 @@
 <script>
 	export default {
 		name: 'GuluSubNav',
-		data(){
+		data() {
 			return {
 				open: false
 			}
 		},
-		methods:{
-			onClick(){
+		methods: {
+			onClick() {
 				this.open = !this.open
 			}
 		}
@@ -28,17 +28,21 @@
 <style lang="scss" scoped>
 	.y-sub-nav {
 		position: relative;
-		> span{
+		> span {
 			padding: 10px 20px;
-			display: inline-flex;
-			vertical-align: top;
+			display: block;
 		}
-		&-popover{
+		&-popover {
 			position: absolute;
 			top: 100%;
 			left: 0;
 			border: 1px solid black;
 			white-space: nowrap;
 		}
+	}
+	.y-sub-nav .y-sub-nav .y-sub-nav-popover {
+		top: 0;
+		left: 100%;
+		margin-left: 6px;
 	}
 </style>
